@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Encuesta</title>
+</head>
+<body style="font-family:sans-serif;text-align:center;margin-top:80px">
+  <p>Cargando la encuesta…</p>
+  <script>
+    // Pega aquí los enlaces de tus tres formularios
+    const FORMULARIOS = [
+      "https://docs.google.com/forms/d/e/1FAIpQLSfDUhgtFbKXbo67KaE2-7NvlHKQMaH-IcGBaG0Edqn4jWQp_g/viewform?usp=header",
+      "https://docs.google.com/forms/d/e/1FAIpQLSdMPZFc-fuweDjMOp0lPZALNqK71JBOt-Sil0y2okEDZkce-A/viewform?usp=header",
+      "https://docs.google.com/forms/d/e/1FAIpQLSe7sDBIJL4dus1_I-A73qZc2tQgT8uQmoQJOJhBDvxu-Ig1nQ/viewform?usp=header"
+    ];
+
+    // Si la persona recarga la página, la manda al mismo formulario que la primera vez
+    let n = null;
+    try { n = localStorage.getItem("grupo_encuesta"); } catch (e) {}
+
+    if (n === null) {
+      n = Math.floor(Math.random() * FORMULARIOS.length); // sorteo: 1/3 cada uno
+      try { localStorage.setItem("grupo_encuesta", n); } catch (e) {}
+    }
+
+    window.location.replace(FORMULARIOS[Number(n)]);
+  </script>
+</body>
+</html>
